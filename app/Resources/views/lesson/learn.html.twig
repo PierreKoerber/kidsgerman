@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+ <h1>{{ lesson.title }} - <small>{{ lesson.translation }}</small></h1>
+    
+
+
+<button  class="btn btn-outline-secondary" onclick="$('.name').toggle()">Allemand</button>                           
+<button  class="btn btn-outline-secondary" onclick="$('.translation').toggle()">Français</button>                           
+        
+ <div id="app">
+    <h1> the app</h1>
+ </div>
+
+<table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>             
+                <th>Traduction</th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for name in words %}
+            <tr>
+                <td class="name" id="german_{{name.id}}">{{ name.article }} {{ name.name }}{% if name.plural is not empty %}, {% endif %}{{ name.plural }}</td>
+                <td class="translation" id="french_{{name.id}}">{{ name.translation }}</td>
+                <td>
+                     <button  class="btn btn-outline-secondary" onclick="$('#german_{{name.id}}').toggle()">All</button>               
+                    <button  class="btn btn-outline-secondary" onclick="$('#french_{{name.id}}').toggle()">Fr</button>                           
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+</table>
+
+<script>
+function hide()
+{
+    $(".translation").hide() ;
+        console.log("hide") ;
+  
+}
+
+  $("a").addClass("btn btn-outline-secondary") ;
+</script>
+
+ <script src="/build/app.js"></script>
+
+{% endblock %}

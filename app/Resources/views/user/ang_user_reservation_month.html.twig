@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+<div ng-app="myapp" ng-controller="userNewReservationController as vm_new_reservation">
+
+
+<h1>User réservation pour le mois</h1>
+
+
+<button ng-click="newMonthReservation()">New reser</button>
+
+<div ng-show="createNew">
+
+année <input type="text" ng-model="form.year">
+<br>
+mois <input type="text" ng-model="form.month">
+<br>
+jour <input type="text" ng-modle="form.day">
+<br>
+
+enfant
+type
+
+<button ng-click="save">sauver</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+var year = {{year}} ;
+var month = {{month}} ;
+var userid = {{userid}}
+
+</script>
+
+<script type="text/ng-template" id="stackedModal.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">The [[name]] modal!</h3>
+        </div>
+        <div class="modal-body" id="modal-bod">
+            Having multiple modals open at once is probably bad UX but it's technically possible.
+        </div>
+ </script>
+
+
+ <script src="{{ asset('js/app.js') }}"></script>
+ <script src="{{ asset('js/dataservice.js') }}"></script>
+ <script src="{{ asset('js/userController.js') }}"></script>
+
+
+  
+{% endblock %}
+
+
+

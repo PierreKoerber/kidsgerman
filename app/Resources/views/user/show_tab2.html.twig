@@ -1,0 +1,31 @@
+
+  <table class="table">
+        <thead>
+            <tr>
+            
+                <th>Prénom, Nom</th>
+      
+                <th>Date de naissance</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for child in user.getChildren() %}
+            <tr>
+               
+                <td>{{ child.firstname }} {{ child.lastname }}</td>
+               
+                <td>{% if child.birthdata %}{{ child.birthdata|date('d.m.Y') }}{% endif %}</td>
+                <td>
+                   
+                            <a class="btn btn-default" href="{{ path('child_show', { 'id': child.id }) }}">Afficher</a>
+                      
+                            <a class="btn btn-default" href="{{ path('child_edit', { 'id': child.id }) }}">Editer</a>
+                      
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des utilisateurs</h1>
+
+
+    <a class="btn btn-default" href="{{ path('user_new') }}">Nouvel utilisateur</a>
+     
+
+    <table class="table">
+        <thead>
+            <tr>
+              
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Nom utilisateur</th>
+                <th>Dernière connexion</th>
+                <th>Tel</th>
+                <th># enfants</th>
+                <th># reservation </th>
+                
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+              
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.username}} </td>
+                <td>{{ user.lastlogin | date("d.m.Y")}}
+                <td>{{ user.tel}}</td>
+                <td>{{ user.getChildren()  | length }}</td>
+                <td>{{ user.getReservations() | length }}</td>
+                
+                <td>
+                   
+                            <a class="btn btn-default" href="{{ path('user_show', { 'id': user.id }) }}">Afficher</a>
+                       
+                            <a class="btn btn-default" href="{{ path('user_edit', { 'id': user.id }) }}">Editer</a>
+
+
+                           {% if is_granted('ROLE_ALLOWED_TO_SWITCH') %}
+                           <a style="margin-left: 1em;" class="btn btn-default" href="{{ path('home', { _switch_user: user.username }) }}">
+                              <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                          </a>
+                        {% endif %}
+                        
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+  
+{% endblock %}

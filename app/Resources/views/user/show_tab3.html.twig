@@ -1,0 +1,35 @@
+
+
+
+
+
+
+ <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Startdate</th>
+              
+                <th>Prestation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in user.getReservations() %}
+            <tr>
+                <td><a class="btn btn-default" href="{{ path('reservation_show', { 'id': reservation.id }) }}">{{ reservation.id }}</a></td>
+                <td>{% if reservation.startDate %}{{ reservation.startDate|date('Y-m-d') }}{% endif %}</td>
+               
+              
+                <td>{{ reservation.prestation }}</td>
+                <td>
+                   
+                            <a class="btn btn-default" href="{{ path('reservation_show', { 'id': reservation.id }) }}">Afficher</a>
+                       
+                            <a class="btn btn-default" href="{{ path('reservation_edit', { 'id': reservation.id }) }}">Editer</a>
+                        
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>

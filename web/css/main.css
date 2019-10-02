@@ -1,0 +1,104 @@
+
+
+
+.navbar{
+    background:#F97300;
+   }
+   .nav-link , .navbar-brand{
+    color: #f4f4f4;
+    cursor: pointer;
+   }
+   .nav-link{
+    margin-right: 1em !important;
+   }
+   .nav-link:hover{
+    background: #f4f4f4;
+    color: #f97300;
+   }
+   .navbar-collapse{
+    justify-content: flex-end;
+   }
+   .navbar-toggler{
+     background:#fff !important;
+   }
+
+
+   body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
+   h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
+   h1 { font-size: 36px; }
+   h2 { font-size: 21px; margin-bottom: 1em; }
+   p { margin: 0 0 1em 0; }
+   a { color: #0000F0; }
+   a:hover { text-decoration: none; }
+   code { background: #F5F5F5; max-width: 100px; padding: 2px 6px; word-wrap: break-word; }
+   #wrapper { background: #FFF; margin: 1em auto; max-width: 800px; width: 95%; }
+   #container { padding: 2em; }
+   #welcome, #status { margin-bottom: 2em; }
+   #welcome h1 span { display: block; font-size: 75%; }
+   #icon-status, #icon-book { float: left; height: 64px; margin-right: 1em; margin-top: -4px; width: 64px; }
+   #icon-book { display: none; }
+
+   @media (min-width: 768px) {
+       #wrapper { width: 80%; margin: 2em auto; }
+       #icon-book { display: inline-block; }
+       #status a, #next a { display: block; }
+
+       @-webkit-keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+       @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+       .sf-toolbar { opacity: 0; -webkit-animation: fade-in 1s .2s forwards; animation: fade-in 1s .2s forwards;}
+   }
+
+
+   .description{
+    position: absolute;
+    top: 30%;
+    margin: auto;
+    padding: 2em;
+}
+.description h1{
+ color:#F97300 ;
+}
+.description p{
+ color:#666;
+ font-size: 20px;
+ width: 50%;
+ line-height: 1.5;
+}
+.description button{
+ border:1px  solid #F97300;
+ background:#F97300;
+ color:#fff;
+}
+
+
+.about{
+    margin: 4em 0;
+    padding: 1em;
+    position: relative;
+   }
+   .about h1{
+    color:#F97300;
+    margin: 2em;
+   }
+   .about img{
+    height: 100%;
+       width: 100%;
+       border-radius: 50%
+   }
+   .about span{
+    display: block;
+    color: #888;
+    position: absolute;
+    left: 115px;
+   }
+   .about .desc{
+    padding: 2em;
+    border-left:4px solid #10828C;
+   }
+   .about .desc h3{
+    color: #10828C;
+   }
+   .about .desc p{
+    line-height:2;
+    color:#888;
+   }

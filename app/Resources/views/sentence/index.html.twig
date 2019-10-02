@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Sentences list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Text</th>
+                <th>Translation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sentence in sentences %}
+            <tr>
+                <td><a href="{{ path('sentence_show', { 'id': sentence.id }) }}">{{ sentence.id }}</a></td>
+                <td>{{ sentence.text }}</td>
+                <td>{{ sentence.translation }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('sentence_show', { 'id': sentence.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('sentence_edit', { 'id': sentence.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('sentence_new') }}">Create a new sentence</a>
+        </li>
+    </ul>
+{% endblock %}

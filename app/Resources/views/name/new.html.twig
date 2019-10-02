@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Nouveau nom</h1>
+
+    {{ form_start(form) }}
+      
+      {% include 'name/name.html.twig' with {'foo': 'bar'} %}
+
+
+        <input type="submit" value="Créer" class="btn btn-outline-secondary" />
+    {{ form_end(form) }}
+
+    
+{% endblock %}

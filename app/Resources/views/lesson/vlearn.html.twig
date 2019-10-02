@@ -1,0 +1,182 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+ <h1>{{ lesson.title }} - <small>{{ lesson.translation }}</small></h1>
+
+  <script>
+    var id = {{lesson.id}} ;
+  </script>  
+{% verbatim %}
+
+ <div id="myapp">
+   
+   
+    
+ </div>
+
+
+<script type="text/javascript" src="https://unpkg.com/vue"></script>
+<script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+
+
+Vue.component('item', {
+  props: {
+    word: Object,
+    callback:Function,
+    debug:Boolean
+  },
+  data(){
+    return {
+      name:"",
+      fontcolor:"",
+      isok:false,
+      console:"",
+      showTranslate:false
+    }
+  },
+  computed:{
+    fullname:function(){
+      if (this.word.article)
+        return this.word.article + " " + this.word.name ;
+
+      return this.word.name ;
+    }
+  },
+  methods:{
+    show(){
+      console.log("show") ;
+      this.showTranslate = !this.showTranslate ;
+    },
+    log(s){
+      this.console +=  "\n" + s ;
+    }
+  },
+  watch:{
+		name:function(){
+			var s = this.fullname ;
+			if (s.indexOf( this.name ) == false ) {
+        this.fontcolor = "right" ;
+      }
+       
+			else 
+				this.fontcolor = "wrong" ;
+			if (this.fullname === this.name){
+        this.isok = true ;
+        
+        this.callback( this.word.id, true) ;
+      }
+      else{
+        this.isok = false ;
+        this.callback( this.word.id, false)
+      }
+		}	
+	},
+  
+  template: `
+  
+ 
+<tr v-bind:class="{ 'table-success' : isok }">
+      <td>
+      {{word.translation}}
+      </td>
+      <td>
+      <input :class="fontcolor" v-model="name"> 
+      <div v-show="showTranslate">{{fullname}}</div>
+      </td>
+
+      <td>
+         <button @click="show()" class="btn btn-primary btn-sm">
+           <i class="fa fa-eye" aria-hidden="true"></i>
+
+         </button>
+      </td>
+      
+</tr>
+
+  `
+});
+
+var app = new Vue({
+  el:"#myapp",
+  data:
+     {
+      words: [],
+      lesson:{
+        words:[]
+      },
+      loading: false,
+      version: "1.0.0",
+      current:null,
+      totRight:0
+    }
+  , 
+  mounted() {
+    console.log("mounted") ;
+    words = this.getWords() ;
+    console.log(words) ;
+  },
+  watch:{
+	},
+  methods: {
+    getWords: function () {
+      this.loading = true;
+      axios.get("/lesson/getwordsjson/"+ id)
+      .then((response)  =>  {
+        this.loading = false;
+        console.log(response) ;
+        this.words = response.data;
+        console.log(this.words) ;
+      }, (error)  =>  {
+        this.loading = false;
+      })
+    },
+    log:function(x){
+      console.log(x) ;
+    },
+    update:function(w, iSts){
+   
+    for(let i = 0; i < this.words.length; i++){
+       //console.log(this.words[i].id) ;
+       //console.log(w) ;
+        if (this.words[i].id == w){
+          if (iSts == true){
+             this.words[i].isRight = 1 ;
+          }
+          else{
+             this.words[i].isRight = 0 ;
+
+          }
+        }
+    }
+    let total = 0 ;
+    for(let i = 0; i < this.words.length; i++){
+      if (this.words[i].isRight == 1   )
+        total += 1 ;
+    }
+    this.totRight = total ;
+    }
+  },
+  template: `
+<div>
+<br>
+Nombre de mots / corrects : {{words.length}} / {{totRight}}
+    <table class="table">
+
+      <item v-for="word in words" :word="word" :key="word.name" :callback="update"></item>
+
+  </table>
+</div>
+
+   `
+
+}) ;
+
+//Vue.config.delimiters = ['[[', ']]'] ;
+
+
+ </script>
+
+ {% endverbatim %}
+
+{% endblock %}

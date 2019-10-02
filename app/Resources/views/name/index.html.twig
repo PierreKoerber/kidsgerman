@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Names list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Article</th>
+                <th>Name</th>
+                <th>Plural</th>
+                <th>Translation</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for name in names %}
+            <tr>
+                <td><a href="{{ path('name_show', { 'id': name.id }) }}">{{ name.id }}</a></td>
+                <td>{{ name.article }}</td>
+                <td>{{ name.name }}</td>
+                <td>{{ name.plural }}</td>
+                <td>{{ name.translation }}</td>
+                <td>{{ name.type }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('name_show', { 'id': name.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('name_edit', { 'id': name.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('name_new') }}">Create a new name</a>
+        </li>
+    </ul>
+{% endblock %}

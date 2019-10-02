@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+    <table class="table">
+        <thead>
+            <tr>
+           
+                <th>Titre</th>
+                 <th></th>
+               
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lesson in lessons %}
+            <tr>
+                <td>{{ lesson.title }} <br>
+               <small> {{ lesson.translation }}</small>
+                </td>
+                <td>
+                {{lesson.words.count}}</td>
+                <td>
+                            <a href="{{ path('lesson_show', { 'id': lesson.id }) }}" class="btn btn-outline-secondary">Afficher</a>                     
+                            <a href="{{ path('lesson_edit', { 'id': lesson.id }) }}" class="btn btn-outline-secondary">Editer</a>
+                            <a href="{{ path('lesson_learn', { 'id': lesson.id }) }}" class="btn btn-outline-secondary">Apprendre</a>
+                            <a href="{{ path('vlesson_learn', { 'id': lesson.id }) }}" class="btn btn-outline-secondary">Examen</a>
+                        
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+   
+            <a href="{{ path('lesson_new') }}" class="btn btn-outline-secondary">Créer une leçon</a>
+        
+   
+{% endblock %}

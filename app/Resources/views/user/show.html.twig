@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h3>Utilisateurs</h3>
+
+<a class="btn btn-default" class="btn btn-default" href="{{ path('child_new', {'id': user.id }) }}">Ajout d'un enfant</a>
+<a class="btn btn-default" class="btn btn-default" href="{{ path('reservation_new', {'id': user.id }) }}">Ajout réservation</a>
+<a class="btn btn-default" class="btn btn-default" href="{{ path('user_reservation_index', {'userid': user.id }) }}">Reservation</a>
+ <a class="btn btn-default" class="btn btn-default" href="{{ path('user_edit', { 'id': user.id }) }}">Editer</a>
+
+ <a class="btn btn-default" class="btn btn-default" href="{{ path('user_index') }}">Retour à liste</a>
+<hr>
+
+ <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    
+    <li role="presentation" class="active"><a class="btn btn-default" href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Utilisateur</a></li>
+    <li role="presentation"><a class="btn btn-default" href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Enfants</a></li>
+    <li role="presentation"><a class="btn btn-default" href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Réservations</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+ 
+    <div role="tabpanel" class="tab-pane active" id="profile">
+        {% include 'user/show_tab1.html.twig' %}
+    </div>
+    <div role="tabpanel" class="tab-pane" id="messages">
+       {% include 'user/show_tab2.html.twig' %}
+    </div>
+    <div role="tabpanel" class="tab-pane" id="settings">
+      {% include 'user/show_tab3.html.twig' %}
+    </div>
+  </div>
+
+  
+           
+  {% endblock %}

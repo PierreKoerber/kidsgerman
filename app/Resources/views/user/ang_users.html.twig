@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+<div ng-app="myapp" ng-controller="usersController as vm_users">
+
+
+
+<h1>Utilisateurs</h1>
+
+
+
+<button ng-click="addReservation()">New reser</button>
+
+
+[[pageUrl]]
+<table class="table">
+
+	<tr>
+		<td>
+			<input type="text" ng-model="filter.firstname">
+		</td>
+	</tr>
+	<tr ng-repeat="u in users">
+		<td>
+			[[u.firstname]] [[u.lastname]]
+			[[$index]]
+		  </td>
+	</tr>
+</table>
+
+
+</div>
+
+ <script src="{{ asset('js/app.js') }}"></script>
+ <script src="{{ asset('js/dataservice.js') }}"></script>
+ <script src="{{ asset('js/usersController.js') }}"></script>
+
+  
+{% endblock %}
+
+
+
