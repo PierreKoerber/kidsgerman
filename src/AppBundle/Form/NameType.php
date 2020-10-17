@@ -31,8 +31,11 @@ class NameType extends AbstractType
                 'nom' => 'nom',
                 'adjectif' => 'adjectif',
                 'verbe' => 'verbe',
+                'adverbe' => 'adverbe',
                 'expression' => 'expression',
                 'préposition' => 'préposition',
+                'pronom' => 'pronom',
+                'conjonction' => 'conjonction',
                 'préposition indéfinie' => 'préposition indéfinie',
 
             ),))

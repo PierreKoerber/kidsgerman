@@ -17,6 +17,22 @@ use Symfony\Component\HttpFoundation\Response;
 class lessonController extends Controller
 {
 
+
+    /**
+     * @Route("/vlearn2/{id}", name="vlesson_learn2")
+     * @Method("GET")
+     */
+    public function vlearn2Action($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $lesson= $em->getRepository('AppBundle:lesson')->findOneById($id);
+        $words = $lesson->getWords()->toArray() ;
+        return $this->render('lesson/vlearn2.html.twig', array(
+            'lesson' => $lesson,
+            'words' => $words
+        ));
+    }
+
     /**
      * @Route("/vlearn/{id}", name="vlesson_learn")
      * @Method("GET")
